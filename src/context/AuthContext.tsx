@@ -28,13 +28,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    async function handleLogin(userLogin: UsuarioLogin) {
+    async function handleLogin(usuarioLogin: UsuarioLogin) {
 
         setIsLoading(true);
 
         try {
 
-            await login(`/usuarios/logar`, userLogin, setUsuario);
+            await login(`/usuarios/logar`, usuarioLogin, setUsuario);
             alert("Usuário autenticado com sucesso!");
             setIsLoading(false);
 

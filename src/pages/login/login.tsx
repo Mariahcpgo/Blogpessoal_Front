@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import UsuarioLogin from '../../models/UsuarioLogin';
@@ -91,7 +91,7 @@ function Login() {
 
                     <p>
                         Ainda não tem uma conta?{' '}
-                        Cadastre-se
+                        <Link to='/cadastro' className='hover:underline'>Cadastre-se</Link>
                     </p>
                 </form>
                 <div className="fundoLogin hidden lg:block"></div>

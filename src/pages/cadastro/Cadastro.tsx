@@ -3,10 +3,13 @@ import './Cadastro.css'
 import Usuario from '../../models/Usuario';
 import { cadastrarUsuario } from '../../services/Services'
 import { useNavigate } from 'react-router-dom';
+import { RotatingLines } from 'react-loader-spinner';
 
 function Cadastro() {
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [confirmaSenha, setConfirmaSenha] = useState<string>('');
 
@@ -61,9 +64,11 @@ function Cadastro() {
       setConfirmaSenha('');
     }
 
+    setIsLoading(false)
+
   }
 
-  console.log(JSON.stringify(usuario));
+  console.log(JSON.stringify({usuario, confirmaSenha}));
 
   return (
     <>
@@ -147,7 +152,15 @@ function Cadastro() {
                            hover:bg-indigo-900 w-1/2 py-2
                            flex justify-center' 
                 >
-              Cadastrar
+              {isLoading ? <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="24"
+                visible={true}
+              /> :
+                <span>Cadastrar</span>
+              }
             </button>
           </div>
         </form>
