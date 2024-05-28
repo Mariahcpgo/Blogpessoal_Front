@@ -8,6 +8,9 @@ import ListaTemas from './components/tema/listatemas/ListaTemas'
 import FormTema from './components/tema/formtema/FormTema'
 import DeletarTema from './components/tema/deletartema/DeletarTema'
 import { AuthProvider } from './context/AuthContext'
+import ListaPostagens from './components/postagens/listaPostagens/ListaPostagens'
+import FormularioPostagem from './components/postagens/formularioPostagem/FormularioPostagem'
+import DeletarPostagem from './components/postagens/deletarPostagem/DeletarPostagem'
 
 
 function App() {
@@ -26,6 +29,10 @@ function App() {
                             <Route path="/cadastrartema" element={<FormTema />} />
                             <Route path="/editartema/:id" element={<FormTema />} />
                             <Route path="/deletartema/:id" element={<DeletarTema />} />
+                            <Route path="/postagens" element={<ListaPostagens />} />
+                            <Route path="/cadastroPostagem" element={<FormularioPostagem />} />
+                            <Route path="/editarPostagem/:id" element={<FormularioPostagem />} />
+                            <Route path="/deletarPostagem/:id" element={<DeletarPostagem />} />
                         </Routes>
                     </div>
                     <Footer />

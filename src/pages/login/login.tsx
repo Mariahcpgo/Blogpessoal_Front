@@ -42,7 +42,7 @@ function Login() {
                 <form className="flex justify-center items-center flex-col w-1/2 gap-4" 
                     onSubmit={login}
                 >
-                    <h2 className="text-slate-900 text-5xl ">Entrar</h2>
+                    <h2 className="text-slate-900 text-5xl font-poppins font-semibold">Entrar</h2>
                     <div className="flex flex-col w-full">
                         <label htmlFor="usuario">Usuário</label>
                         <input
@@ -69,8 +69,8 @@ function Login() {
                     </div>
                     <button
                         type='submit'
-                        className="rounded bg-indigo-400 flex justify-center
-                                   hover:bg-indigo-900 text-white w-1/2 py-2">
+                        className="rounded bg-indigo-300 flex justify-center
+                                   hover:bg-indigo-950 text-white w-1/2 py-2">
 
                         {isLoading ?
 
@@ -87,7 +87,7 @@ function Login() {
                         
                     </button>
 
-                    <hr className="border-slate-800 w-full" />
+                    <hr className="border-slate-800 w-full font-poppins font-semibold" />
 
                     <p>
                         Ainda não tem uma conta?{' '}
