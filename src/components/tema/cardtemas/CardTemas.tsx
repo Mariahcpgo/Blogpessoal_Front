@@ -7,26 +7,25 @@ interface CardTemasProps{
 
 function CardTemas({ tema }: CardTemasProps) {
     return (
-        <div className='border border-indigo-950 flex flex-col rounded-3xl overflow-hidden justify-between font-poppins text-center'>
-            <header className='py-2 px-6 bg-indigo-950 text-white text-xl '>
+        <div className='shadow-2xl shadow-black border flex flex-col rounded-3xl overflow-hidden justify-between font-poppins text-center m-2'>
+            <header className='py-2 px-6 bg-white text-black text-lg font-semibold border border-silve'>
                 Tema
             </header>
-            <p className='p-8 text-3xl bg-slate-200 h-full font-semibold'>{tema.descricao}</p>
-
-            <div className="flex">
+            <p className='p-10 text-2xl bg-white h-full font-semibold'>{tema.descricao}</p>
+            <div className="flex flex-col p-2 px-2 bg-white">
+                <div className='p-1'>
                 <Link to={`/editartema/${tema.id}`}
-                    className='w-full text-slate-100 bg-indigo-300 hover:bg-indigo-950
-                        flex items-center justify-center py-2'>
+                    className='w-full text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-indigo-950 flex items-center justify-center py-2 rounded-full'>
                     <button>Editar</button>
                 </Link>
-
+                </div>
+                <div className='p-1'>
                 <Link to={`/deletartema/${tema.id}`}
-                    className='text-slate-100 bg-red-400 hover:bg-red-600 w-full 
-		                        flex items-center justify-center'>
+                    className='text-white bg-gradient-to-r from-red-400 to-red-600 hover:from-indigo-950 w-full flex items-center justify-center py-2 rounded-full'>
                     <button>Deletar</button>
                 </Link>
+                </div>
             </div>
-
         </div>
     )
 }

@@ -4,6 +4,7 @@ import Tema from "../../../models/Tema";
 import { RotatingLines } from "react-loader-spinner";
 import { buscar, deletar } from "../../../services/Services";
 import { AuthContext } from "../../../context/AuthContext";
+import { toastAlerta } from "../../../utils/ToastAlerta";
 
 
 function DeletarTema() {
@@ -26,7 +27,7 @@ function DeletarTema() {
             })
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                alert('O token expirou!')
+                toastAlerta('O token expirou!', 'info')
                 handleLogout()
             }
         }
@@ -34,7 +35,7 @@ function DeletarTema() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            toastAlerta('Você precisa estar logado!', 'info')
             navigate('/')
         }
     }, [token])
@@ -56,13 +57,13 @@ function DeletarTema() {
             await deletar(`/tema/${id}`, {
                 headers: { Authorization: token }
             })
-            alert('O Tema foi apagado com sucesso!')
+            toastAlerta('O Tema foi apagado com sucesso!', 'sucesso')
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                alert('O token expirou!')
+                toastAlerta('O token expirou!', 'info')
                 handleLogout()
             }else{
-                alert('Erro ao Excluir o Tema!')
+                toastAlerta('Erro ao Excluir o Tema!', 'info')
             }
         }
 
@@ -70,27 +71,31 @@ function DeletarTema() {
         retornar()
     }
 
+    
+
     return (
         <div className='container w-1/3 mx-auto font-poppins'>
-            <h1 className='text-4xl text-center my-4 font-semibold'>Deletar tema</h1>
-            <p className='text-center font-semibold mb-4'>
+            <h1 className='text-4xl text-center my-6 font-semibold text-white'>Deletar tema</h1>
+            <p className='text-center mb-4 text-white'>
                 Você tem certeza de que deseja apagar o tema a seguir?</p>
-            <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
+            <div className='shadow-2xl shadow-black border flex flex-col rounded-2xl overflow-hidden text-center mx-10'>
                 <header 
-                    className='py-2 px-6 bg-indigo-950 text-white font-semibold text-2xl'>
+                    className='py-2 px-6 bg-white text-black font-semibold text-lg border border-silve'>
                     Tema
                 </header>
-                <p className='p-8 text-3xl bg-slate-200 h-full'>{tema.descricao}</p>
-                <div className="flex">
+                <p className='p-8 text-2xl bg-white h-full'>{tema.descricao}</p>
+                <div className="flex flex-col bg-white">
+                    <div className='p-1'>
                     <button 
-                        className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'
+                        className='text-white bg-gradient-to-r from-red-400 to-red-600 hover:from-indigo-950 w-full flex items-center justify-center py-2 rounded-full'
                         onClick={retornar}
                         >
                         Não
                     </button>
+                    </div>
+                    <div className='p-1 pb-4'>
                     <button 
-                        className='w-full text-slate-100 bg-indigo-300 
-                                   hover:bg-indigo-950 flex items-center justify-center'
+                        className='w-full text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-indigo-950 flex items-center justify-center py-2 rounded-full'
                         onClick={deletarTema}
                         >
                         {isLoading ? <RotatingLines
@@ -103,6 +108,7 @@ function DeletarTema() {
                         <span>Sim</span>
                     }
                     </button>
+                    </div>
                 </div>
             </div>
         </div>

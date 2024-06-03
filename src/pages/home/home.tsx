@@ -5,10 +5,11 @@ function Home(){
 
     return(
         <>
-        <div className="bg-indigo-950 flex justify-center">
+        <div className="p-1">
+        <div className="flex justify-center">
             <div className="container grid grid-cols-2 text-white">
                 <div className="flex flex-col items-center gap-4 justify-center py-4">
-                    <h2 className="text-4xl font-poppins font-bold">Seja bem-vindo ao blog!</h2>
+                    <h2 className="text-9xl font-mono font-bold">BLOG</h2>
                     <p className="text-1xl">Expresse aqui seus pensamentos</p>
                 
                     <div className="flex justify-around gap-4">
@@ -23,6 +24,7 @@ function Home(){
             </div>
         </div>
         <ListaPostagens />
+        </div>
         </>
     );
 }

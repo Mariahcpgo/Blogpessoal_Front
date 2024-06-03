@@ -38,11 +38,11 @@ function Login() {
 
     return (
         <>
-            <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-semibold text-white">
                 <form className="flex justify-center items-center flex-col w-1/2 gap-4" 
                     onSubmit={login}
                 >
-                    <h2 className="text-slate-900 text-5xl font-poppins font-semibold">Entrar</h2>
+                    <h2 className="text-5xl font-poppins font-semibold text-white">Entrar</h2>
                     <div className="flex flex-col w-full">
                         <label htmlFor="usuario">Usuário</label>
                         <input
@@ -50,7 +50,7 @@ function Login() {
                             id="usuario"
                             name="usuario"
                             placeholder="Usuario"
-                            className="border-2 border-slate-700 rounded p-2"
+                            className="border-2 rounded p-2 shadow-md shadow-black text-black"
                             value={usuarioLogin.usuario}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
@@ -62,15 +62,14 @@ function Login() {
                             id="senha"
                             name="senha"
                             placeholder="Senha"
-                            className="border-2 border-slate-700 rounded p-2"
+                            className="border-2 rounded p-2 shadow-md shadow-black text-black"
                             value={usuarioLogin.senha}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                     </div>
                     <button
                         type='submit'
-                        className="rounded bg-indigo-300 flex justify-center
-                                   hover:bg-indigo-950 text-white w-1/2 py-2">
+                        className="rounded text-white border-white border-solid border-2 py-2 hover:bg-white hover:text-black w-1/2 flex items-center justify-center">
 
                         {isLoading ?
 
@@ -87,11 +86,11 @@ function Login() {
                         
                     </button>
 
-                    <hr className="border-slate-800 w-full font-poppins font-semibold" />
+                    <hr className="border-black w-full font-poppins font-semibol" />
 
-                    <p>
+                    <p className='text-black'>
                         Ainda não tem uma conta?{' '}
-                        <Link to='/cadastro' className='hover:underline'>Cadastre-se</Link>
+                        <Link to='/cadastro' className='hover:underline hover:text-white'>Cadastre-se</Link>
                     </p>
                 </form>
                 <div className="fundoLogin hidden lg:block"></div>

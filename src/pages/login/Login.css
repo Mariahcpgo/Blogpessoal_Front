@@ -1,5 +1,6 @@
 .fundoLogin {
-    background-image: url("https://ik.imagekit.io/4kqnwi1lux/Generation/Design%20sem%20nome.png?updatedAt=1716859001748");
+    background-image: url("./src/assets/acesso.svg");
+    background-color: transparent;
     background-repeat: no-repeat;
     min-height: 100vh;
     width: 100%;

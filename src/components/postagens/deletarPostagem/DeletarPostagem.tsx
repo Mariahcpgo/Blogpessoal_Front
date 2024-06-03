@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Postagem from '../../../models/Postagem'
 import { AuthContext } from '../../../context/AuthContext'
 import { buscar, deletar } from '../../../services/Services'
+import { toastAlerta } from '../../../utils/ToastAlerta'
 
 
 function DeletarPostagem() {
@@ -24,7 +25,7 @@ function DeletarPostagem() {
       })
     } catch (error: any) {
       if (error.toString().includes('403')) {
-        alert('O token expirou, favor logar novamente')
+        toastAlerta('O token expirou, favor logar novamente', 'info')
         handleLogout()
       }
     }
@@ -32,7 +33,7 @@ function DeletarPostagem() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado')
+      toastAlerta('Você precisa estar logado', 'info')
       navigate('/login')
     }
   }, [token])
@@ -55,31 +56,35 @@ function DeletarPostagem() {
         }
       })
 
-      alert('Postagem apagada com sucesso')
+      toastAlerta('Postagem apagada com sucesso', 'sucesso')
 
     } catch (error) {
-      alert('Erro ao apagar a Postagem')
+      toastAlerta('Erro ao apagar a Postagem', 'erro')
     }
 
     retornar()
   }
   return (
-    <div className='container w-1/3 mx-auto'>
-      <h1 className='text-4xl text-center my-4'>Deletar postagem</h1>
+    <div className='container w-1/3 mx-auto font-poppins'>
+      <h1 className='text-4xl text-center my-4 text-white'>Deletar postagem</h1>
 
-      <p className='text-center font-semibold mb-4'>Você tem certeza de que deseja apagar a postagem a seguir?</p>
+      <p className='text-center mb-4 text-white'>Você tem certeza de que deseja apagar a postagem a seguir?</p>
 
-      <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
-        <header className='py-2 px-6 bg-indigo-600 text-white font-bold text-2xl'>Postagem</header>
-        <div className="p-4">
-          <p className='text-xl h-full'>{postagem.titulo}</p>
+      <div className='shadow-2xl shadow-black border flex flex-col rounded-2xl overflow-hidden justify-between'>
+        <header className='py-2 px-6 bg-white text-black font-semibold text-2xl border border-silve'>Postagem</header>
+        <div className="p-6 bg-white">
+          <p className='text-xl h-full font-semibold'>{postagem.titulo}</p>
           <p>{postagem.texto}</p>
         </div>
-        <div className="flex">
-          <button className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2' onClick={retornar}>Não</button>
-          <button className='w-full text-slate-100 bg-indigo-400 hover:bg-indigo-600 flex items-center justify-center' onClick={deletarPostagem}>
+        <div className="flex flex-col bg-white">
+          <div className='p-1'>
+          <button className='text-white bg-gradient-to-r from-red-400 to-red-600 hover:from-indigo-950 w-full flex items-center justify-center py-2 rounded-full' onClick={retornar}>Não</button>
+          </div>
+          <div className='p-1 pb-2'>
+          <button className='w-full text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-indigo-950 flex items-center justify-center py-2 rounded-full' onClick={deletarPostagem}>
             Sim
           </button>
+          </div>
         </div>
       </div>
     </div>

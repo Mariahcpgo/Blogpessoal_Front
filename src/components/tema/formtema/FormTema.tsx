@@ -4,6 +4,7 @@ import Tema from "../../../models/Tema";
 import { RotatingLines } from "react-loader-spinner";
 import { atualizar, buscar, cadastrar } from "../../../services/Services";
 import { AuthContext } from "../../../context/AuthContext";
+import { toastAlerta } from "../../../utils/ToastAlerta";
 
 
 function FormTema() {
@@ -25,7 +26,7 @@ function FormTema() {
             })
         } catch (error: any) {
             if (error.toString().includes('401')) {
-                alert('O token expirou!')
+                toastAlerta('O token expirou!', 'info')
                 handleLogout()
             }
         }
@@ -33,7 +34,7 @@ function FormTema() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            toastAlerta('Você precisa estar logado!', 'info')
             navigate('/')
         }
     }, [token])
@@ -65,13 +66,13 @@ function FormTema() {
                 await atualizar(`/tema`, tema, setTema, {
                     headers: { 'Authorization': token }
                 });
-                alert('Tema atualizado com sucesso!');
+                toastAlerta('Tema atualizado com sucesso!', 'sucesso');
             } catch (error: any) {
                 if (error.toString().includes('401')) {
-                    alert('O token Expirou!')
+                    toastAlerta('O token Expirou!', 'info')
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar o Tema!')
+                    toastAlerta('Erro ao atualizar o Tema!', 'erro')
                 }
             }
 
@@ -81,13 +82,13 @@ function FormTema() {
                 await cadastrar(`/tema`, tema, setTema, {
                     headers: { 'Authorization': token }
                 });
-                alert('Tema cadastrado com sucesso!');
+                toastAlerta('Tema cadastrado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes('401')) {
-                    alert('O token Expirou!')
+                    toastAlerta('O token Expirou!', 'info')
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar o Tema!')
+                    toastAlerta('Erro ao cadastrar o Tema!', 'erro')
                 }
             }
 
@@ -100,28 +101,27 @@ function FormTema() {
     console.log(JSON.stringify(tema))
 
     return (
-        <div className="container flex flex-col items-center justify-center mx-auto">
-            <h1 className="text-4xl text-center my-8 font-poppins font-semibold">
+        <div className="flex flex-col items-center justify-center mx-auto pb-80">
+            <h1 className="text-4xl text-center my-8 font-poppins font-semibold text-white">
                 {id === undefined ? 'Cadastrar Tema' : 'Editar Tema'}
             </h1>
 
             <form className="w-1/2 flex flex-col gap-4"
                 onSubmit={gerarNovoTema}
             >
-                <div className="flex flex-col gap-2 font-poppins font-semibold">
+                <div className="flex flex-col gap-2 font-poppins text-white">
                     <label htmlFor="descricao">Descrição do Tema</label>
                     <input
                         type="text"
                         placeholder="Descreva aqui seu tema"
                         name='descricao'
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border shadow-md shadow-black rounded p-2 bg-gray-100 text-black"
                         value={tema.descricao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
                 <button
-                    className="rounded text-slate-100 bg-indigo-300 
-                               hover:bg-indigo-950 w-1/2 py-2 mx-auto flex justify-center font-poppins"
+                    className="rounded text-white border-white border-solid border-2 py-2 px-4 hover:bg-white hover:text-indigo-950"
                     type="submit">
 
                     {isLoading ? <RotatingLines
