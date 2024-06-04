@@ -19,7 +19,7 @@ function Home(){
                 </div>
 
                 <div className="flex justify-center">
-                    <img src="./src/assets/tela.svg" alt="" className="w-3/3"/>
+                    <img src="https://ik.imagekit.io/4kqnwi1lux/Generation/tela.svg?updatedAt=1717518874196" alt="" className="w-3/3"/>
                 </div>
             </div>
         </div>
